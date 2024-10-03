@@ -5,6 +5,10 @@
 
 <br/>
 
+<div align="center">
+  <img alt="Demo" src="./static/readme-img1.png" />
+</div>
+
 <center>
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) &nbsp;
