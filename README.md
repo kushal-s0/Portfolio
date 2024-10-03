@@ -5,9 +5,7 @@
 
 <br/>
 
-<div align="center">
-  <img alt="Demo" src="./static/readme-img1.png" />
-</div>
+
 
 <center>
 
