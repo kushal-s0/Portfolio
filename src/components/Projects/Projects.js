@@ -21,7 +21,17 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-
+          
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={morse}
+              isBlog={false}
+              title="Todo list website"
+              description="This is a simple morse code to text converter and vice-versa this is a python base project and it beginner project "
+              ghLink="https://github.com/kushal-s0/todolistwebsite"
+              demoLink="todolistwebsite-indol.vercel.app/"              
+            />
+          </Col>
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={morse}
