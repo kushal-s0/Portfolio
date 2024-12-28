@@ -29,7 +29,7 @@ function Projects() {
               title="Stock Detail Webpage"
               description="This webpage provides detailed stock information, including the daily opening, closing, high, and low prices for a specific stock. Additionally, it displays comprehensive data for the entire month for that stock. This project is built using Python and leverages an API to retrieve the data."
               ghLink="https://github.com/kushal-s0/stockdetailwebpage"
-              demoLink="stockdetailwebpage.vercel.app/"              
+              demoLink="https://stockdetailwebpage.vercel.app/"              
             />
           </Col>
           
@@ -40,7 +40,7 @@ function Projects() {
               title="Todo list website"
               description="This is a website for maintain the user's todos this is a python base project and it beginner project "
               ghLink="https://github.com/kushal-s0/todolistwebsite"
-              demoLink="todolistwebsite-indol.vercel.app/"              
+              demoLink="https://todolistwebsite-indol.vercel.app/"              
             />
           </Col>
           <Col md={4} className="project-card">
