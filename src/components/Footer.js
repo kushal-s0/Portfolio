@@ -33,7 +33,7 @@ function Footer() {
             </li>
             <li className="social-icons">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/kushal-soni-044847329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
