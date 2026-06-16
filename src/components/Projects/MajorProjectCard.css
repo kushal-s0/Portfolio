@@ -267,7 +267,17 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(199, 112, 240, 0.35);
 }
-
+.demo-video-link {
+  background-color: transparent;
+  color: #c770f0;
+  border-color: #c770f0;
+}
+.demo-video-link:hover {
+  background-color: #c770f0;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(199, 112, 240, 0.35);
+}
 @media (max-width: 576px) {
   .major-project-title {
     font-size: 22px;

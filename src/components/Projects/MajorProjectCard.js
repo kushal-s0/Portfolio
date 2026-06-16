@@ -10,6 +10,7 @@ function MajorProjectCard({
   description,
   ghLink,
   demoLink,
+  demoVideo,
 }) {
   const imageCount = imgPaths.length;
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -98,6 +99,16 @@ function MajorProjectCard({
               className="major-project-link demo-link"
             >
               <CgWebsite /> Live Demo
+            </a>
+          )}
+          {demoVideo && (
+            <a
+              href={demoVideo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="major-project-link demo-video-link"
+            >
+              <CgWebsite /> VideoDemo
             </a>
           )}
         </div>

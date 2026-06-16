@@ -9,6 +9,9 @@ import morse from "../../Assets/Projects/morse.png";
 import tictactoe from "../../Assets/Projects/Tictactoe.png";
 import color from "../../Assets/Projects/color.png";
 import game from "../../Assets/Projects/game.png";
+import community1 from "../../Assets/Projects/community1.png";
+import community2 from "../../Assets/Projects/community2.png";
+import community3 from "../../Assets/Projects/community3.png";
 
 function Projects() {
   return (
@@ -38,18 +41,18 @@ function Projects() {
             </Col>
             <Col md={12}>
               <MajorProjectCard
-                title="E-Commerce Platform"
-                description="A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features a complete shopping cart system, secure payment integration, user authentication, and an admin dashboard for inventory management. This project demonstrates scalability, security best practices, and responsive design across all devices. Includes real-time order tracking and customer support features."
-                ghLink="https://github.com/kushal-s0/ecommerce-platform"
-                imgPaths={[Todo, morse, color]}
+                title="CommUnity"
+                description="CommUnity is a centralized club management platform that streamlines communication and administration for students, faculty, and club leaders. It features role-based access, announcement publishing, smart event scheduling with Google Calendar integration, faculty approval workflows, and AI-powered event reporting that automatically generates comprehensive event summaries, including attendance statistics, chief guest details, and key event highlights."
+                ghLink="https://github.com/kushal-s0/CommUnity"
+                demoVideo="https://drive.google.com/file/d/1gnXLSHoTurimSiFqCFEbPClosUyVyl-U/view?usp=drive_link"
+                imgPaths={[community1, community2, community3]}
               />
             </Col>
             <Col md={12}>
               <MajorProjectCard
-                title="Cloud-Based Collaboration Tool"
-                description="A real-time collaboration platform enabling teams to work together seamlessly across different locations. Built with WebSockets for instant synchronization, featuring video conferencing, document sharing, and project management tools. The platform is deployed on AWS and handles concurrent users efficiently with horizontal scaling capabilities."
-                ghLink="https://github.com/kushal-s0/collab-tool"
-                demoLink="https://collab-tool.vercel.app/"
+                title="Project Hub"
+                description="ProjectHub is a centralized project management and repository platform that enables students to store, showcase, and share their academic projects with peers, faculty, and guides. The platform provides real-time project progress tracking, evaluation features for faculty, and supports academic credit allocation based on project performance and completion."
+                ghLink="https://github.com/Sagar-Shetty0804/Project_Hub"
               />
             </Col>
         </Row>
