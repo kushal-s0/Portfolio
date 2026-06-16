@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
@@ -12,11 +12,22 @@ function MajorProjectCard({
   demoLink,
 }) {
   const imageCount = imgPaths.length;
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (imageCount <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveImageIndex((prev) => (prev + 1) % imageCount);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [imageCount]);
 
   return (
     <Row className="major-project-card-container">
       {/* Image Section */}
-      <Col md={imageCount > 0 ? 6 : 12} className="major-project-images">
+      <Col md={6} className="major-project-images">
         {imageCount === 0 ? (
           <div className="no-image-placeholder">
             <div className="no-image-glow no-image-glow-1" />
@@ -33,29 +44,38 @@ function MajorProjectCard({
             </div>
           </div>
         ) : imageCount === 1 ? (
-          <img src={imgPaths[0]} alt={title} className="major-project-img" />
+          <div className="image-wrapper">
+            <img src={imgPaths[0]} alt={title} className="major-project-img" />
+          </div>
         ) : (
           <div className="major-project-mosaic">
             <div className="mosaic-main">
-              <img src={imgPaths[0]} alt={`${title}-0`} className="major-project-img-main" />
+              <img 
+                src={imgPaths[activeImageIndex]} 
+                alt={`${title}-${activeImageIndex}`} 
+                className="major-project-img-main" 
+              />
             </div>
             <div className="mosaic-side">
-              {imgPaths.slice(1, 3).map((img, index) => (
-                <div className="mosaic-side-item" key={index}>
-                  <img
-                    src={img}
-                    alt={`${title}-${index + 1}`}
-                    className="major-project-img-side"
-                  />
-                </div>
-              ))}
+              {[1, 2].map((offset) => {
+                const imgIndex = (activeImageIndex + offset) % imageCount;
+                return (
+                  <div className="mosaic-side-item" key={offset}>
+                    <img
+                      src={imgPaths[imgIndex]}
+                      alt={`${title}-${imgIndex}`}
+                      className="major-project-img-side"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
       </Col>
 
       {/* Content Section */}
-      <Col md={imageCount > 0 ? 6 : 12} className="major-project-content">
+      <Col md={6} className="major-project-content">
         <h3 className="major-project-title">{title}</h3>
         <p className="major-project-description">{description}</p>
 
