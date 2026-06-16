@@ -24,6 +24,9 @@ import crm3 from "../../Assets/Projects/crm3.png";
 import geoswipe1 from "../../Assets/Projects/geoswipe1.png";
 import geoswipe2 from "../../Assets/Projects/geoswipe2.png";
 import geoswipe3 from "../../Assets/Projects/geoswipe3.png";
+import atomix1 from "../../Assets/Projects/atomix1.png";
+import atomix2 from "../../Assets/Projects/atomix2.png";
+import atomix3 from "../../Assets/Projects/atomix3.png";
 
 
 function Projects() {
@@ -45,11 +48,11 @@ function Projects() {
         <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
             <Col md={12}>
               <MajorProjectCard
-                title="AI-Powered Analytics Dashboard"
-                description="A comprehensive data analytics platform built with React and Node.js that leverages machine learning algorithms to provide real-time insights and predictions. Features include interactive visualizations, custom report generation, and integration with multiple data sources. The dashboard processes millions of data points efficiently and provides actionable intelligence for business decision-making."
+                title="Atomix: Your Personal laboratory with AI."
+                description="Atomix is an AI-powered 3D virtual chemistry laboratory built in Unity that allows students to perform experiments freely by selecting chemicals, quantities, temperatures, and procedures, just like in a real lab. The platform simulates realistic reaction outcomes, provides an AI voice-enabled assistant for personalized guidance and error analysis, visualizes chemical processes at the molecular level, and tracks experiment history to enhance conceptual understanding through interactive and safe learning."
                 ghLink="https://github.com/Dhir-learner/Atomix"
                 demoVideo="https://drive.google.com/file/d/1XU7xea-vn6SSq1Ce_sKLWOYANmqZHwxc/view?usp=drive_link"
-                imgPaths={[stock]}
+                imgPaths={[atomix1, atomix2, atomix3]}
               />
             </Col>
             <Col md={12}>
