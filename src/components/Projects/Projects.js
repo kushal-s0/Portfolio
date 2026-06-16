@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
+import MajorProjectCard from "./MajorProjectCard";
 import Particle from "../Particle";
 import stock from "../../Assets/Projects/stock.png";
 import Todo from "../../Assets/Projects/Todo.png";
@@ -20,6 +21,43 @@ function Projects() {
         <p style={{ color: "white" }}>
           Here are a few projects I've worked on recently.
         </p>
+
+        {/* Major Project Section */}
+        <h2 style={{ color: "white", marginTop: "30px", marginBottom: "20px" }}>
+          <strong className="purple">Major Projects</strong>
+        </h2>
+        <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
+            <Col md={12}>
+              <MajorProjectCard
+                title="AI-Powered Analytics Dashboard"
+                description="A comprehensive data analytics platform built with React and Node.js that leverages machine learning algorithms to provide real-time insights and predictions. Features include interactive visualizations, custom report generation, and integration with multiple data sources. The dashboard processes millions of data points efficiently and provides actionable intelligence for business decision-making."
+                ghLink="https://github.com/kushal-s0/analytics-dashboard"
+                demoLink="https://analytics-dashboard.vercel.app/"
+                imgPaths={[stock]}
+              />
+            </Col>
+            <Col md={12}>
+              <MajorProjectCard
+                title="E-Commerce Platform"
+                description="A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features a complete shopping cart system, secure payment integration, user authentication, and an admin dashboard for inventory management. This project demonstrates scalability, security best practices, and responsive design across all devices. Includes real-time order tracking and customer support features."
+                ghLink="https://github.com/kushal-s0/ecommerce-platform"
+                imgPaths={[Todo, morse, color]}
+              />
+            </Col>
+            <Col md={12}>
+              <MajorProjectCard
+                title="Cloud-Based Collaboration Tool"
+                description="A real-time collaboration platform enabling teams to work together seamlessly across different locations. Built with WebSockets for instant synchronization, featuring video conferencing, document sharing, and project management tools. The platform is deployed on AWS and handles concurrent users efficiently with horizontal scaling capabilities."
+                ghLink="https://github.com/kushal-s0/collab-tool"
+                demoLink="https://collab-tool.vercel.app/"
+              />
+            </Col>
+        </Row>
+
+        {/* Basic Project Section */}
+        <h2 style={{ color: "white", marginTop: "30px", marginBottom: "20px" }}>
+          <strong className="purple">Basic Projects</strong>
+        </h2>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           
           <Col md={4} className="project-card">
