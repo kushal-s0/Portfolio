@@ -108,7 +108,7 @@ function MajorProjectCard({
               rel="noopener noreferrer"
               className="major-project-link demo-video-link"
             >
-              <CgWebsite /> VideoDemo
+              <CgWebsite /> Video Demo
             </a>
           )}
         </div>
