@@ -31,6 +31,7 @@ export const majorProjects = [
       "Atomix is an AI-powered 3D virtual chemistry laboratory built in Unity that allows students to perform experiments freely by selecting chemicals, quantities, temperatures, and procedures, just like in a real lab. The platform simulates realistic reaction outcomes, provides an AI voice-enabled assistant for personalized guidance and error analysis, visualizes chemical processes at the molecular level, and tracks experiment history to enhance conceptual understanding through interactive and safe learning.",
     tags: ["Unity", "AI Assistant", "Voice", "3D Simulation"],
     ghLink: "https://github.com/Dhir-learner/Atomix",
+    demoLink: "https://kushal-s0.itch.io/atomix",
     demoVideo: "https://drive.google.com/file/d/1XU7xea-vn6SSq1Ce_sKLWOYANmqZHwxc/view?usp=drive_link",
     images: [atomix1, atomix2, atomix3],
   },
@@ -41,8 +42,8 @@ export const majorProjects = [
       "GeoSwipe is an immersive educational platform that allows users to explore UNESCO World Heritage Sites, monuments, forts, temples, and palaces through interactive maps and a 3D Earth visualization. The platform features AI-powered hand gesture control, enabling complete navigation without a mouse or keyboard, along with geography quizzes, historical storybooks, and travel guides to create an engaging and accessible learning experience.",
     tags: ["3D Globe", "Gesture Control", "Interactive Maps", "EdTech"],
     ghLink: "https://github.com/Interior-Gardener/Geoswipe",
-    demoLink: "https://geoswipe.onrender.com/",
-    demoVideo: "https://drive.google.com/file/d/1NzUjonejcssivGZTnOTxkJuZuxzxwtFT/view",
+    demoLink: "https://geoswipe.pages.dev/",
+    demoVideo: "https://drive.google.com/file/d/13jWqWI3qgzt3HObZ80NEqZqjEjKYIqeV/view?usp=sharing",
     images: [geoswipe1, geoswipe2, geoswipe3],
   },
   {
