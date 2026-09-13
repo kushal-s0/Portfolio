@@ -1,46 +1,57 @@
 import React, { useState, useEffect } from "react";
-import Preloader from "../src/components/Pre";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Projects from "./components/Projects/Projects";
-import Footer from "./components/Footer";
-import Resume from "./components/Resume/ResumeNew";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  Navigate,
+  useLocation,
 } from "react-router-dom";
+import Preloader from "./components/Pre";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home/Home";
+import About from "./components/About/About";
+import Projects from "./components/Projects/Projects";
+import Resume from "./components/Resume/ResumeNew";
+import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import Background from "./components/Background";
+import Effects from "./components/Effects";
 import "./style.css";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  // Keying on the path remounts the page so its entry animation replays.
+  return (
+    <main className="page" key={location.pathname}>
+      <Routes location={location}>
+        <Route path="/" element={<Home />} />
+        <Route path="/project" element={<Projects />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </main>
+  );
+}
 
 function App() {
-  const [load, upadateLoad] = useState(true);
+  const [load, updateLoad] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      upadateLoad(false);
-    }, 1200);
-
+    const timer = setTimeout(() => updateLoad(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <Router>
       <Preloader load={load} />
-      <div className="App" id={load ? "no-scroll" : "scroll"}>
+      <Background />
+      <Effects />
+      <div className={`app ${load ? "app--loading" : ""}`} id={load ? "no-scroll" : "scroll"}>
         <Navbar />
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/"/>} />
-        </Routes>
+        <AnimatedRoutes />
         <Footer />
       </div>
     </Router>

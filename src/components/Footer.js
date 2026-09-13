@@ -1,70 +1,45 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import SocialLinks from "./SocialLinks";
 
 function Footer() {
-  let date = new Date();
-  let year = date.getFullYear();
+  const year = new Date().getFullYear();
+
   return (
-    <Container fluid className="footer">
-      <Row>
-        <Col md="4" className="footer-copywright">
-          <h3>Designed and Developed by Kushal Soni</h3>
-        </Col>
-        <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} KS</h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <ul className="footer-icons">
-            <li className="social-icons">
-              <a
-                href="https://github.com/kushal-s0"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://x.com/"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <AiOutlineTwitter />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/kushaldsoni/"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.instagram.com/_kushal_s._"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <AiFillInstagram />
-              </a>
-            </li>
-          </ul>
-        </Col>
-      </Row>
-    </Container>
+    <footer className="footer">
+      <div className="container">
+        <div className="footer__top">
+          <div className="footer__brand">
+            <Link to="/" className="logo-mark" aria-label="Home">
+              KS
+            </Link>
+            <p>Strive to build things that make a difference, one commit at a time.</p>
+          </div>
+
+          <nav className="footer__nav" aria-label="Footer">
+            <span className="footer__label">Navigate</span>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/project">Projects</Link>
+            <Link to="/resume">Resume</Link>
+          </nav>
+
+          <div className="footer__social">
+            <span className="footer__label">Find me on</span>
+            <SocialLinks />
+          </div>
+        </div>
+
+        <div className="footer__giant" aria-hidden="true">
+          Kushal Soni
+        </div>
+
+        <div className="footer__bottom">
+          <span>Designed &amp; developed by Kushal Soni</span>
+          <span>© {year} KS. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
   );
 }
 

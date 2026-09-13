@@ -1,104 +1,129 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import { CgWebsite } from "react-icons/cg";
+import React, { useEffect, useState } from "react";
 import { BsGithub } from "react-icons/bs";
-import "./MajorProjectCard.css";
+import { FiArrowUpRight, FiLayers, FiMaximize2, FiPlayCircle } from "react-icons/fi";
+import Reveal from "../Reveal";
+import Lightbox from "./Lightbox";
+
+const SLIDE_MS = 5000;
+
+function Placeholder({ title, tags }) {
+  return (
+    <div className="placeholder">
+      <div className="placeholder__grid" />
+      <div className="placeholder__icon">
+        <FiLayers />
+      </div>
+      <h4 className="placeholder__title">{title}</h4>
+      <div className="placeholder__tags">
+        {tags.slice(0, 3).map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function MajorProjectCard({
-  imgPaths = [],
+  index,
+  total,
   title,
+  tagline,
   description,
+  tags = [],
+  images = [],
   ghLink,
   demoLink,
   demoVideo,
 }) {
-  const imageCount = imgPaths.length;
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const imageCount = images.length;
+  const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState(null);
 
+  // `active` is a dependency so picking a thumbnail restarts the timer.
   useEffect(() => {
-    if (imageCount <= 1) return;
+    if (imageCount <= 1 || lightbox !== null) return undefined;
+    const timer = setTimeout(() => setActive((prev) => (prev + 1) % imageCount), SLIDE_MS);
+    return () => clearTimeout(timer);
+  }, [imageCount, lightbox, active]);
 
-    const interval = setInterval(() => {
-      setActiveImageIndex((prev) => (prev + 1) % imageCount);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [imageCount]);
+  const pad = (n) => String(n).padStart(2, "0");
 
   return (
-    <Row className="major-project-card-container">
-      {/* Image Section */}
-      <Col md={6} className="major-project-images">
-        {imageCount === 0 ? (
-          <div className="no-image-placeholder">
-            <div className="no-image-glow no-image-glow-1" />
-            <div className="no-image-glow no-image-glow-2" />
-            <div className="placeholder-icon">
-              <CgWebsite />
-            </div>
-            <h4>Project Showcase</h4>
-            <p>Designed with features, architecture, and impact in focus.</p>
-            <div className="no-image-tags">
-              <span>Concept</span>
-              <span>Features</span>
-              <span>Links</span>
-            </div>
+    <Reveal as="article" className={`major-card ${index % 2 ? "major-card--reverse" : ""}`}>
+      <div className="major-card__media">
+        <div className="browser spotlight">
+          <div className="browser__bar">
+            <span />
+            <span />
+            <span />
+            <div className="browser__url">{title.toLowerCase().replace(/\s+/g, "-")}.app</div>
           </div>
-        ) : imageCount === 1 ? (
-          <div className="image-wrapper">
-            <img src={imgPaths[0]} alt={title} className="major-project-img" />
-          </div>
-        ) : (
-          <div className="major-project-mosaic">
-            <div className="mosaic-main">
-              <img 
-                src={imgPaths[activeImageIndex]} 
-                alt={`${title}-${activeImageIndex}`} 
-                className="major-project-img-main" 
-              />
-            </div>
-            <div className="mosaic-side">
-              {[1, 2].map((offset) => {
-                const imgIndex = (activeImageIndex + offset) % imageCount;
-                return (
-                  <div className="mosaic-side-item" key={offset}>
-                    <img
-                      src={imgPaths[imgIndex]}
-                      alt={`${title}-${imgIndex}`}
-                      className="major-project-img-side"
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </Col>
 
-      {/* Content Section */}
-      <Col md={6} className="major-project-content">
-        <h3 className="major-project-title">{title}</h3>
-        <p className="major-project-description">{description}</p>
+          {imageCount === 0 ? (
+            <Placeholder title={title} tags={tags} />
+          ) : (
+            <>
+              <button
+                type="button"
+                className="browser__screen"
+                onClick={() => setLightbox(active)}
+                aria-label={`Open ${title} screenshots`}
+              >
+                {images.map((src, i) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`${title} screenshot ${i + 1}`}
+                    className={i === active ? "is-active" : ""}
+                    loading="lazy"
+                  />
+                ))}
+                <span className="browser__zoom">
+                  <FiMaximize2 /> View
+                </span>
+              </button>
 
-        <div className="major-project-links">
-          {ghLink && (
-            <a
-              href={ghLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="major-project-link github-link"
-            >
-              <BsGithub /> GitHub
-            </a>
+              {imageCount > 1 && (
+                <div className="browser__thumbs">
+                  {images.map((src, i) => (
+                    <button
+                      key={src}
+                      type="button"
+                      className={`thumb ${i === active ? "is-active" : ""}`}
+                      onClick={() => setActive(i)}
+                      aria-label={`Show screenshot ${i + 1}`}
+                    >
+                      <img src={src} alt="" loading="lazy" />
+                      {i === active && lightbox === null && (
+                        <span className="thumb__progress" key={active} />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
+        </div>
+      </div>
+
+      <div className="major-card__body">
+        <span className="major-card__index">
+          {pad(index + 1)} <span>/ {pad(total)}</span>
+        </span>
+        <h3 className="major-card__title">{title}</h3>
+        {tagline && <p className="major-card__tagline">{tagline}</p>}
+        <p className="major-card__desc">{description}</p>
+
+        <ul className="tags">
+          {tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+
+        <div className="major-card__links">
           {demoLink && (
-            <a
-              href={demoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="major-project-link demo-link"
-            >
-              <CgWebsite /> Live Demo
+            <a href={demoLink} target="_blank" rel="noopener noreferrer" className="btn btn--primary btn--sm magnetic">
+              Live demo <FiArrowUpRight className="btn__arrow" />
             </a>
           )}
           {demoVideo && (
@@ -106,14 +131,32 @@ function MajorProjectCard({
               href={demoVideo}
               target="_blank"
               rel="noopener noreferrer"
-              className="major-project-link demo-video-link"
+              className={`btn btn--sm magnetic ${demoLink ? "btn--ghost" : "btn--primary"}`}
             >
-              <CgWebsite /> Video Demo
+              <FiPlayCircle /> Video demo
+            </a>
+          )}
+          {ghLink && (
+            <a href={ghLink} target="_blank" rel="noopener noreferrer" className="btn btn--ghost btn--sm magnetic">
+              <BsGithub /> Source code
             </a>
           )}
         </div>
-      </Col>
-    </Row>
+      </div>
+
+      {lightbox !== null && (
+        <Lightbox
+          images={images}
+          index={lightbox}
+          title={title}
+          onChange={setLightbox}
+          onClose={() => {
+            setActive(lightbox);
+            setLightbox(null);
+          }}
+        />
+      )}
+    </Reveal>
   );
 }
 

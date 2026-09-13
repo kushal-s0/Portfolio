@@ -8,12 +8,13 @@ function Type() {
         strings: [
           "Software Developer",
           "Freelancer",
-          "WEB Developer",
+          "Web Developer",
           "Open Source Contributor",
         ],
         autoStart: true,
         loop: true,
-        deleteSpeed: 50,
+        deleteSpeed: 40,
+        delay: 70,
       }}
     />
   );

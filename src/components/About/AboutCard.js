@@ -1,42 +1,39 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import { ImPointRight } from "react-icons/im";
+import { IoGameControllerOutline } from "react-icons/io5";
+import { FiEdit3, FiVideo } from "react-icons/fi";
+import Reveal from "../Reveal";
+
+const hobbies = [
+  { icon: IoGameControllerOutline, label: "Playing games" },
+  { icon: FiEdit3, label: "Writing tech blogs" },
+  { icon: FiVideo, label: "Making coding video tutorials" },
+];
 
 function AboutCard() {
   return (
-    <Card className="quote-card-view">
-      <Card.Body>
-        <blockquote className="blockquote mb-0">
-          <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Kushal Soni </span>
-            from <span className="purple"> Mumbai, India.</span>
-            <br />
-            I am currently studing at K.J Somaiya Institute of Technology .
-            <br />
-            I have pursuing btech in computer engineering.
-            <br />
-            <br />
-            Apart from coding, some other activities that I love to do!
-          </p>
-          <ul>
-            <li className="about-activity">
-              <ImPointRight /> Playing Games
-            </li>
-            <li className="about-activity">
-              <ImPointRight /> Writing Tech Blogs
-            </li>
-            <li className="about-activity">
-              <ImPointRight /> Making Video Tutorial For Coding
-            </li>
-          </ul>
+    <Reveal className="card about-card spotlight" delay={200}>
+      <p>
+        Hi everyone, I am <mark>Kushal Soni</mark> from <mark>Mumbai, India</mark>.
+      </p>
+      <p>
+        I am currently pursuing a <mark>B.Tech in Computer Engineering</mark> at K.J. Somaiya
+        Institute of Technology.
+      </p>
+      <p>Apart from coding, some other activities that I love to do:</p>
 
-          <p style={{ color: "rgb(155 126 172)" }}>
-            "Strive to build things that make a difference!"{" "}
-          </p>
-          <footer className="blockquote-footer">Kushal</footer>
-        </blockquote>
-      </Card.Body>
-    </Card>
+      <ul className="hobbies">
+        {hobbies.map(({ icon: Icon, label }) => (
+          <li key={label}>
+            <Icon /> {label}
+          </li>
+        ))}
+      </ul>
+
+      <blockquote className="about-quote">
+        “Strive to build things that make a difference!”
+        <cite>Kushal</cite>
+      </blockquote>
+    </Reveal>
   );
 }
 

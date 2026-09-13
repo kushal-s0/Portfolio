@@ -1,40 +1,36 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
+import { FiArrowUpRight } from "react-icons/fi";
 
-function ProjectCards(props) {
+function ProjectCard({ title, description, image, tags = [], ghLink, demoLink }) {
   return (
-    <Card className="project-card-view">
-      <Card.Img variant="top" src={props.imgPath} alt="card-img" />
-      <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
-        <Card.Text style={{ textAlign: "justify" }}>
-          {props.description}
-        </Card.Text>
-        <Button variant="primary" href={props.ghLink} target="_blank">
-          <BsGithub /> &nbsp;
-          {props.isBlog ? "Blog" : "GitHub"}
-        </Button>
-        {"\n"}
-        {"\n"}
-
-        {/* If the component contains Demo link and if it's not a Blog then, it will render the below component  */}
-
-        {!props.isBlog && props.demoLink && (
-          <Button
-            variant="primary"
-            href={props.demoLink}
-            target="_blank"
-            style={{ marginLeft: "10px" }}
-          >
-            <CgWebsite /> &nbsp;
-            {"Demo"}
-          </Button>
-        )}
-      </Card.Body>
-    </Card>
+    <article className="project-card spotlight">
+      <div className="project-card__media">
+        <img src={image} alt={title} loading="lazy" />
+      </div>
+      <div className="project-card__body">
+        <ul className="tags tags--sm">
+          {tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+        <h3 className="project-card__title">{title}</h3>
+        <p className="project-card__desc">{description}</p>
+        <div className="project-card__links">
+          {ghLink && (
+            <a href={ghLink} target="_blank" rel="noopener noreferrer" className="text-link">
+              <BsGithub /> Code
+            </a>
+          )}
+          {demoLink && (
+            <a href={demoLink} target="_blank" rel="noopener noreferrer" className="text-link text-link--accent">
+              Live demo <FiArrowUpRight />
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
   );
 }
-export default ProjectCards;
+
+export default ProjectCard;

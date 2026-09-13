@@ -1,69 +1,30 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
-import { CgCPlusPlus } from "react-icons/cg";
-import {
-  DiJavascript1,
-  DiReact,
-  DiNodejs,
-  DiMongodb,
-  DiPython,
-  DiGit,
-  DiDjango,
-  DiJava,
-  DiCss3,
-  DiHtml5,
-  DiGithub,
-  DiSqllite,
-  DiMysql,
-} from "react-icons/di";
+import Reveal from "../Reveal";
 
+function hexToRgba(hex, alpha) {
+  const int = parseInt(hex.replace("#", ""), 16);
+  return `rgba(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255}, ${alpha})`;
+}
 
-function Techstack() {
+function Techstack({ items }) {
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons">
-        <CgCPlusPlus />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiJavascript1 />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiPython />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiDjango />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiCss3 />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiHtml5 />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiGithub />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiSqllite />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiMysql />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiJava />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiReact />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiNodejs />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiMongodb />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
-      </Col>
-    </Row>
+    <div className="tech-grid">
+      {items.map(({ name, icon: Icon, color }, index) => (
+        <Reveal key={name} variant="scale" delay={index * 45}>
+          <div
+            className="tech-tile spotlight"
+            style={{
+              "--brand": color,
+              "--brand-soft": hexToRgba(color, 0.16),
+              "--brand-glow": hexToRgba(color, 0.45),
+            }}
+          >
+            <Icon className="tech-tile__icon" />
+            <span className="tech-tile__name">{name}</span>
+          </div>
+        </Reveal>
+      ))}
+    </div>
   );
 }
 

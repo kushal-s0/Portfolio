@@ -1,53 +1,61 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Particle from "../Particle";
-import Github from "./Github";
-import Techstack from "./Techstack";
-import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
-import Toolstack from "./Toolstack";
+import { skills, tools } from "../../data/profile";
+import Reveal from "../Reveal";
+import SectionHeading from "../SectionHeading";
+import AboutCard from "./AboutCard";
+import Techstack from "./Techstack";
+import Github from "./Github";
 
 function About() {
   return (
-    <Container fluid className="about-section">
-      <Particle />
-      <Container>
-        <Row style={{ justifyContent: "center", padding: "10px" }}>
-          <Col
-            md={7}
-            style={{
-              justifyContent: "center",
-              paddingTop: "30px",
-              paddingBottom: "50px",
-            }}
-          >
-            <h1 style={{ fontSize: "2.1em", paddingBottom: "20px" }}>
-              Know Who <strong className="purple">I'M</strong>
+    <>
+      <section className="page-hero">
+        <div className="container about-grid">
+          <div>
+            <span className="eyebrow anim anim--fade">About me</span>
+            <h1 className="page-title anim anim--fade" style={{ "--d": "100ms" }}>
+              Know who <span className="gradient-text">I am</span>
             </h1>
-            <Aboutcard />
-          </Col>
-          <Col
-            md={5}
-            style={{ paddingTop: "120px", paddingBottom: "50px" }}
-            className="about-img"
-          >
-            <img src={laptopImg} alt="about" className="img-fluid" />
-          </Col>
-        </Row>
-        <h1 className="project-heading">
-          Professional <strong className="purple">Skillset </strong>
-        </h1>
+            <AboutCard />
+          </div>
+          <Reveal variant="right" delay={200} className="about-visual">
+            <div className="about-visual__blob" />
+            <img src={laptopImg} alt="Illustration of a developer at work" />
+          </Reveal>
+        </div>
+      </section>
 
-        <Techstack />
+      <section className="section">
+        <div className="container">
+          <SectionHeading
+            eyebrow="Skills"
+            title="Professional"
+            highlight="skillset"
+            description="The languages, frameworks and databases I use to bring ideas to life."
+          />
+          <Techstack items={skills} />
+        </div>
+      </section>
 
-        <h1 className="project-heading">
-          <strong className="purple">Tools</strong> I use
-        </h1>
-        <Toolstack />
+      <section className="section section--tight">
+        <div className="container">
+          <SectionHeading
+            eyebrow="Toolbox"
+            highlight="Tools"
+            after="I use"
+            description="Editors, engines and platforms that power my everyday workflow."
+          />
+          <Techstack items={tools} />
+        </div>
+      </section>
 
-        <Github />
-      </Container>
-    </Container>
+      <section className="section">
+        <div className="container">
+          <Github />
+        </div>
+      </section>
+    </>
   );
 }
 
