@@ -1,6 +1,6 @@
 <h2 align="center">
   Portfolio Website - v2.0<br/>
-  <a href="https://portfolio1-blue-zeta.vercel.app/" target="_blank">Kushal Soni</a>
+  <a href="https://kushal-portfolio-lime.vercel.app/" target="_blank">Kushal Soni</a>
 </h2>
 
 <br/>
