@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 
-function Lightbox({ images, index, title, onClose, onChange }) {
+function Lightbox({ images, index, title, captions = [], onClose, onChange }) {
   const count = images.length;
   const prev = () => onChange((index - 1 + count) % count);
   const next = () => onChange((index + 1) % count);
@@ -38,9 +38,9 @@ function Lightbox({ images, index, title, onClose, onChange }) {
       </button>
 
       <figure className="lightbox__figure" onClick={(event) => event.stopPropagation()}>
-        <img key={images[index]} src={images[index]} alt={`${title} screenshot ${index + 1}`} />
+        <img key={images[index]} src={images[index]} alt={captions[index] || `${title} screenshot ${index + 1}`} />
         <figcaption>
-          {title}
+          {captions[index] || title}
           <span>
             {index + 1} / {count}
           </span>

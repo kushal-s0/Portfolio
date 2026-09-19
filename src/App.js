@@ -11,6 +11,8 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
+import ProjectDetail from "./components/Projects/ProjectDetail";
+import Experience from "./components/Experience/Experience";
 import Resume from "./components/Resume/ResumeNew";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -27,6 +29,8 @@ function AnimatedRoutes() {
       <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/project" element={<Projects />} />
+        <Route path="/project/:slug" element={<ProjectDetail />} />
+        <Route path="/experience" element={<Experience />} />
         <Route path="/about" element={<About />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="*" element={<Navigate to="/" />} />

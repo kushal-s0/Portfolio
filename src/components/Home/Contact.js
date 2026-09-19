@@ -11,7 +11,7 @@ function Contact() {
           <div className="cta__border" aria-hidden="true" />
           <div className="cta__inner">
             <div className="cta__grid" aria-hidden="true" />
-            <span className="eyebrow">03 / What's next?</span>
+            <span className="eyebrow">04 / What's next?</span>
             <h2 className="cta__title">
               Let's build something that <span className="gradient-text">makes a difference.</span>
             </h2>

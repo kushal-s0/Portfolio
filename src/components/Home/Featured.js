@@ -40,7 +40,7 @@ function Featured() {
                 glareBorderRadius="22px"
                 transitionSpeed={1800}
               >
-                <Link to="/project" className="feature-card spotlight">
+                <Link to={`/project/${project.slug}`} className="feature-card spotlight">
                   <div className="feature-card__media">
                     <img src={project.images[0]} alt={project.title} loading="lazy" />
                   </div>

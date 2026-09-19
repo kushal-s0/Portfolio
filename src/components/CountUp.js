@@ -28,7 +28,7 @@ function CountUp({ end, duration = 1800, suffix = "" }) {
 
   return (
     <span ref={ref}>
-      {value}
+      {value.toLocaleString("en-US")}
       {suffix}
     </span>
   );

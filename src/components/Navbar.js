@@ -4,6 +4,7 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
+  AiOutlineTrophy,
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -12,6 +13,7 @@ const links = [
   { to: "/", label: "Home", icon: AiOutlineHome },
   { to: "/about", label: "About", icon: AiOutlineUser },
   { to: "/project", label: "Projects", icon: AiOutlineFundProjectionScreen },
+  { to: "/experience", label: "Experience", icon: AiOutlineTrophy },
   { to: "/resume", label: "Resume", icon: CgFileDocument },
 ];
 

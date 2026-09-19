@@ -19,6 +19,7 @@ import Type from "./Type";
 import Marquee from "./Marquee";
 import Home2 from "./Home2";
 import Featured from "./Featured";
+import Journey from "./Journey";
 import Contact from "./Contact";
 
 const innerOrbit = [
@@ -148,6 +149,7 @@ function Home() {
       <Marquee />
       <Home2 />
       <Featured />
+      <Journey />
       <Contact />
     </>
   );
