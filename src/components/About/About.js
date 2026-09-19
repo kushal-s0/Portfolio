@@ -1,6 +1,6 @@
 import React from "react";
 import laptopImg from "../../Assets/about.png";
-import { skills, tools } from "../../data/profile";
+import { skillGroups, tools } from "../../data/profile";
 import Reveal from "../Reveal";
 import SectionHeading from "../SectionHeading";
 import AboutCard from "./AboutCard";
@@ -34,7 +34,15 @@ function About() {
             highlight="skillset"
             description="The languages, frameworks and databases I use to bring ideas to life."
           />
-          <Techstack items={skills} />
+          {skillGroups.map((group) => (
+            <div key={group.title} className="skill-group">
+              <h3 className="skill-group__title">
+                {group.title}
+                <span>{group.items.length}</span>
+              </h3>
+              <Techstack items={group.items} />
+            </div>
+          ))}
         </div>
       </section>
 

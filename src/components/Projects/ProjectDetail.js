@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   FiArrowLeft,
@@ -6,6 +6,8 @@ import {
   FiArrowUpRight,
   FiAward,
   FiCheck,
+  FiChevronLeft,
+  FiChevronRight,
   FiMaximize2,
   FiUsers,
 } from "react-icons/fi";
@@ -18,6 +20,88 @@ import Placeholder from "./Placeholder";
 import ProjectLinks from "./ProjectLinks";
 
 const pad = (n) => String(n).padStart(2, "0");
+const SLIDE_MS = 5000;
+
+// Cover screenshot that cycles through the gallery; clicking opens the lightbox.
+function CoverCarousel({ slug, shots, paused, onOpen }) {
+  const [active, setActive] = useState(0);
+  const count = shots.length;
+  const running = count > 1 && !paused;
+
+  // `active` is a dependency so picking a slide restarts the timer.
+  useEffect(() => {
+    if (!running) return undefined;
+    const timer = setTimeout(() => setActive((prev) => (prev + 1) % count), SLIDE_MS);
+    return () => clearTimeout(timer);
+  }, [running, active, count]);
+
+  const go = (step) => setActive((prev) => (prev + step + count) % count);
+
+  return (
+    <Reveal className="case-cover" delay={100}>
+      <div className="browser spotlight">
+        <div className="browser__bar">
+          <span />
+          <span />
+          <span />
+          <div className="browser__url">{slug}.app</div>
+          {count > 1 && (
+            <span className="cover-count">
+              {pad(active + 1)} / {pad(count)}
+            </span>
+          )}
+        </div>
+
+        <button
+          type="button"
+          className="browser__screen case-cover__screen"
+          onClick={() => onOpen(active)}
+          aria-label={`Enlarge: ${shots[active].caption}`}
+        >
+          {shots.map((shot, index) => (
+            <img
+              key={shot.src}
+              src={shot.src}
+              alt={index === active ? shot.caption : ""}
+              className={index === active ? "is-active" : ""}
+            />
+          ))}
+          <span className="browser__zoom">
+            <FiMaximize2 /> Enlarge
+          </span>
+        </button>
+
+        {count > 1 && (
+          <div className="cover-dots">
+            <button type="button" className="cover-dots__nav" onClick={() => go(-1)} aria-label="Previous screenshot">
+              <FiChevronLeft />
+            </button>
+            <div className="cover-dots__list">
+              {shots.map((shot, index) => (
+                <button
+                  key={shot.src}
+                  type="button"
+                  className={`cover-dot ${index === active ? "is-active" : ""}`}
+                  onClick={() => setActive(index)}
+                  aria-label={`Show screenshot ${index + 1}`}
+                  aria-current={index === active}
+                >
+                  {index === active && running && <span key={active} className="cover-dot__progress" />}
+                </button>
+              ))}
+            </div>
+            <button type="button" className="cover-dots__nav" onClick={() => go(1)} aria-label="Next screenshot">
+              <FiChevronRight />
+            </button>
+          </div>
+        )}
+      </div>
+      <p className="case-cover__caption" aria-live="polite">
+        {shots[active].caption}
+      </p>
+    </Reveal>
+  );
+}
 
 function Metrics({ items }) {
   return (
@@ -193,32 +277,26 @@ function ProjectDetail() {
             </div>
           </Reveal>
 
-          <Reveal className="case-cover" delay={100}>
-            <div className="browser spotlight">
-              <div className="browser__bar">
-                <span />
-                <span />
-                <span />
-                <div className="browser__url">{project.slug}.app</div>
-              </div>
-              {gallery.length ? (
-                <button
-                  type="button"
-                  className="browser__screen case-cover__screen"
-                  onClick={() => setLightbox(0)}
-                  aria-label={`Enlarge: ${gallery[0].caption}`}
-                >
-                  <img src={gallery[0].src} alt={gallery[0].caption} className="is-active" />
-                  <span className="browser__zoom">
-                    <FiMaximize2 /> Enlarge
-                  </span>
-                </button>
-              ) : (
+          {gallery.length ? (
+            <CoverCarousel
+              slug={project.slug}
+              shots={gallery}
+              paused={lightbox !== null}
+              onOpen={setLightbox}
+            />
+          ) : (
+            <Reveal className="case-cover" delay={100}>
+              <div className="browser spotlight">
+                <div className="browser__bar">
+                  <span />
+                  <span />
+                  <span />
+                  <div className="browser__url">{project.slug}.app</div>
+                </div>
                 <Placeholder title={title} tags={tags} />
-              )}
-            </div>
-            {gallery.length > 0 && <p className="case-cover__caption">{gallery[0].caption}</p>}
-          </Reveal>
+              </div>
+            </Reveal>
+          )}
 
           {details.metrics && <Metrics items={details.metrics} />}
         </div>

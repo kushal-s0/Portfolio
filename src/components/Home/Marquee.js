@@ -4,7 +4,10 @@ import { skills, tools } from "../../data/profile";
 function Track({ items, reverse }) {
   // Items are rendered twice so the -50% translate loops seamlessly.
   return (
-    <div className={`marquee__track ${reverse ? "marquee__track--reverse" : ""}`}>
+    <div
+      className={`marquee__track ${reverse ? "marquee__track--reverse" : ""}`}
+      style={{ animationDuration: `${items.length * 5}s` }}
+    >
       {[...items, ...items].map(({ name, icon: Icon, color }, index) => (
         <span
           key={`${name}-${index}`}
